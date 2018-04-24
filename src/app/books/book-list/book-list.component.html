@@ -1,0 +1,25 @@
+<p>
+  book-list works!
+</p>
+<!--
+<pre>{{ books | json }}</pre>
+
+<pre>{{ books$ | async | json }}</pre>
+-->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of (books$ | async); let i = index">
+      <td><a [routerLink]="['/books/details', item.id]">{{ i+1 }}</a></td>
+      <td>{{ item.title}}</td>
+      <td>{{ item.description}}</td>
+    </tr>
+  </tbody>
+</table>
