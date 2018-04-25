@@ -15,11 +15,25 @@ export class BookListComponent implements OnInit, OnDestroy {
   books: Array<Book> = [];
   books$: Observable<Array<Book>>;
   private subscriptions: Array<Subscription> = [];
+
+  columns = [
+    { prop: 'id' },
+    { name: 'title' },
+    { name: 'description' }
+  ];
+
   constructor(private booksService: BooksService) { }
+
 
   ngOnInit() {
   //  this.findAllBooks();
     this.findAllBooksObs();
+  }
+
+  remove(id: number) {
+    this.booksService.remove(id).subscribe(() => {
+       this.findAllBooksObs();
+    });
   }
 
   private findAllBooksObs() {

@@ -7,25 +7,27 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class BooksService {
-  apiUrl = 'http://localhost:3000';
-  private books: Array<Book> = [];
+  private apiUrl = 'api';
 
-  constructor(private http: HttpClient) { 
-   // this.books.push({ title: 'title1', description: 'description1'})
-   // this.books.push({ title: 'title2', description: 'description2'})
-  
-  }
+  constructor(private http: HttpClient) {}
 
   findAll(): Observable<any> {
-    // return Observable.of(this.books);
     return this.http.get(`${this.apiUrl}/books`);
   }
 
   findOne(id: number): Observable<any> {
-    // return Observable.of(this.books);
     return this.http.get(`${this.apiUrl}/books/${id}`);
   }
 
+  remove(id: number) {
+    return this.http.delete(`${this.apiUrl}/books/${id}`);
+  }
 
+  add(model: Book): Observable<Book> {
+    return this.http.post(`${this.apiUrl}/books`, model) as Observable<Book>;
+  }
 
+  edit(id: number, model: Book) {
+    return this.http.put(`${this.apiUrl}/books/${id}`, model);
+  }
 }

@@ -7,12 +7,18 @@
 <pre>{{ books$ | async | json }}</pre>
 -->
 
+<ngx-datatable
+  [rows]="(books$ | async)"
+  [columns]="columns">
+</ngx-datatable>
+
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +26,10 @@
       <td><a [routerLink]="['/books/details', item.id]">{{ i+1 }}</a></td>
       <td>{{ item.title}}</td>
       <td>{{ item.description}}</td>
+      <td>
+        <a [routerLink]="['/books/edit', item.id]">Edit</a>
+        <button class="btn btn-link" (click)="remove(item.id)">Remove</button>
+      </td>
     </tr>
   </tbody>
 </table>

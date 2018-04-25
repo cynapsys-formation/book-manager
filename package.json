@@ -4,12 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "node_modules/.bin/ng",
-    "start": "node_modules/.bin/ng serve",
+    "start-default": "node_modules/.bin/ng serve",
+    "start": "node_modules/.bin/ng serve --proxy-config proxy.conf.json",
     "build": "node_modules/.bin/ng build --prod",
     "test": "node_modules/.bin/ng test",
     "lint": "node_modules/.bin/ng lint",
     "e2e": "node_modules/.bin/ng e2e",
-    "api": "node_modules/.bin/json-server --watch db.json"
+    "api": "node_modules/.bin/json-server --watch db.json --no-cors=true"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@angular/service-worker": "^5.2.0",
+    "@swimlane/ngx-datatable": "^11.3.2",
     "bootstrap": "^4.1.0",
     "core-js": "^2.4.1",
     "jquery": "^3.3.1",

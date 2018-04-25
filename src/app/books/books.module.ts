@@ -8,12 +8,18 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookFormComponent } from './book-form/book-form.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BooksService } from './books.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
     BooksRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxDatatableModule
   ],
   providers: [BooksService],
   declarations: [BooksPageComponent, BookListComponent, BookFormComponent, BookDetailsComponent]
