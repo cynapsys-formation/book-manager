@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { Link } from '../../models/link';
+import {CoreService} from '../../services/core.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,14 +11,22 @@ export class NavbarComponent implements OnInit, OnChanges, OnDestroy {
   @Input() title: string;
   @Input() links: Array<Link>;
   @Output() linkEvent = new EventEmitter();
-  
-  constructor() {
+  message = '';
+
+  constructor(private coreService: CoreService) {
     console.log('constructor', this.title);
+
    }
 
   ngOnInit() {
     console.log('ngOnInit', this.title);
+
+    this.coreService.getMessage()
+      .subscribe((data: any) => this.message = data);
+
   }
+
+
 
   ngOnChanges(changes: SimpleChanges) {
    console.log('ngOnChanges', changes);
@@ -26,7 +35,7 @@ export class NavbarComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     console.log('ngOnDestroy');
   }
-  
+
 
   onHover() {
     this.hoverImpl();

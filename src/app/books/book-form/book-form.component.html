@@ -8,25 +8,30 @@
     <h5 class="card-title">Book (new/edit)</h5>
 
 
-    <form #formBook="ngForm" (submit)="onSave()">
+    <form [formGroup]="formBook" (submit)="onSave()">
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" class="form-control"
                id="title"
                name="title"
-               [(ngModel)]="bookModel.title"
+               [formControl]="bookModelControl.title"
                aria-describedby="title"
                placeholder="Enter title">
+        <div [hidden]="bookModelControl.title.valid || bookModelControl.title.untouched">
+          <span>Error</span>
+          <span [hidden]="bookModelControl.title.hasError('minLength')">Min Length > 3</span>
+          <span [hidden]="bookModelControl.title.hasError('required')">Required</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control"
-               id="description" [(ngModel)]="bookModel.description"
+               id="description" [formControl]="bookModelControl.description"
                name="description"
                aria-describedby="description"
                placeholder="Enter description">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" [disabled]="!formBook.valid" class="btn btn-primary">Submit</button>
     </form>
 
 

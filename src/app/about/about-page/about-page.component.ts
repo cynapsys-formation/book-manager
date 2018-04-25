@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CoreService} from '../../core/services/core.service';
 
 @Component({
   selector: 'app-about-page',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-page.component.css']
 })
 export class AboutPageComponent implements OnInit {
-
-  constructor() { }
+  message = '';
+  constructor(private coreService: CoreService) {
+    this.coreService.getMessage()
+      .subscribe((data: any) => this.message = data);
+  }
 
   ngOnInit() {
+
+  }
+
+  addMessage() {
+    this.coreService.addMessage('message from Navbar');
   }
 
 }
